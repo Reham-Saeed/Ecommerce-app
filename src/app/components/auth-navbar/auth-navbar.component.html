@@ -1,0 +1,13 @@
+<nav class="bg-gray-100 px-20 py-4">
+ <div class="container lg:flex lg:justify-between lg:items-center">
+  <div class="flex items-center justify-between lg:flex-none text-3xl">
+    <img src="assets/images/freshcart-logo.svg" alt="freshcart-logo" />
+    <button class="fa-solid fa-bars lg:hidden text-black/45 py-2 px-4 border rounded-md border-black/45 focus:outline" (click)="toggleMenu()"></button>
+  </div>
+   <ul class="lg:flex gap-5 hidden" [ngClass]="{'hidden': !isMenuOpen}">
+     <li><a routerLink="/signin" routerLinkActive="">Signin</a></li>
+     <li><a routerLink="/signup" routerLinkActive="">Signup</a></li>
+   </ul>
+ </div>
+</nav>
+
