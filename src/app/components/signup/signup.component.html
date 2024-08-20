@@ -1,1 +1,16 @@
-<p>signup works!</p>
+<section class="bg-green-600 p-5">
+ <div class="container">
+  <form [formGroup]="registerForm" (ngSubmit)="sendData()" class="bg-white flex flex-col gap-4 p-10 w-[60%] m-auto">
+   <label class="text-main font-bold">Register Now:</label>
+   <input formControlName="name" type="text" placeholder="Name" class="border rounded p-2">
+   <alertError [formName]="registerForm" controlName="name"/>
+   <input formControlName="email" type="email" placeholder="Email" class="border rounded p-2">
+   <alertError [formName]="registerForm" controlName="email"/>
+   <input formControlName="password" type="password" placeholder="Password" class="border rounded p-2">
+   <alertError [formName]="registerForm" controlName="password"/>
+   <input formControlName="rePassword" type="password" placeholder="Repassword" class="border rounded p-2">
+   <alertError [formName]="registerForm" controlName="rePassword"/>
+   <button class="bg-main text-white my-2 py-1 rounded" [disabled]="registerForm.invalid">Register</button>
+  </form>
+ </div>
+</section>

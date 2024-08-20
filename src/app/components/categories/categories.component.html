@@ -1,1 +1,12 @@
-<p>categories works!</p>
+<div class="container my-5">
+ <div class="grid sm:grid-cols-1 md:grid-cols-4 xl:grid-cols-6 gap-4">
+   @for (category of allCategories; track $index) {
+   <div class="product p-3">
+     <img [src]="category.image" alt="product-image"/>
+     <h6 class="text-main">{{category.name}}</h6>
+     <button class="btn bg-main text-white w-full my-2 py-1 rounded">Show All Items</button>
+   </div>
+   }
+ </div>
+</div>
+
