@@ -10,6 +10,10 @@ import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { isLoggedInGuard } from './core/guards/is-logged-in.guard';
+import { authGuard } from './core/guards/auth.guard';
+import { ForgotComponent } from './components/forgot/forgot.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 export const routes: Routes = 
 [
@@ -20,11 +24,13 @@ export const routes: Routes =
    {path:'',redirectTo:'signin',pathMatch:'full'},
    {path:'signin',component:SigninComponent,title:'Signin'},
    {path:'signup',component:SignupComponent,title:'Signup'},
+   {path:'forgot',component:ForgotComponent,title:'Forgot Password'},
   ]
  },
  {
   path:'',
   component:MainLayoutComponent,
+  canActivate:[authGuard],
   children:[
    {path:'',redirectTo:'home',pathMatch:'full'},
    {path:'home',component:HomeComponent,title:'Home'},
@@ -33,6 +39,7 @@ export const routes: Routes =
    {path:'products',component:ProductsComponent,title:'Products'},
    {path:'cart',component:CartComponent,title:'Cart'},
    {path:'orders',component:OrdersComponent,title:'Orders'},
+   {path:'details/:id',component:ProductDetailsComponent,title:'Details'},
   ]
  },
  {path:'**',component:NotFoundComponent,title:'Notfound'}

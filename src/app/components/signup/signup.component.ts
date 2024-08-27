@@ -1,29 +1,49 @@
-import { Component } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { AbstractControl, FormBuilder,FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AlertErrorComponent } from '../../shared/ui/alert-error/alert-error.component';
+import { confirmPassword } from '../../shared/utils/confirm-password.utils';
+import { signupValidators } from '../../shared/validators/register.validators';
+import { AuthService } from '../../core/services/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule,AlertErrorComponent],
+  imports: [ReactiveFormsModule,AlertErrorComponent,NgClass],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
 export class SignupComponent {
-  registerForm:FormGroup=new FormGroup({
-    name:new FormControl(null,[Validators.required,Validators.minLength(2),Validators.maxLength(20)]),
-    email:new FormControl(null,[Validators.required,Validators.email]),
-    password:new FormControl(null,[Validators.required,Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)]),
-    rePassword:new FormControl(null),
-  },this.confirmPasswoed)
+  isButton:boolean=false;
+  errorMessage:string="";
 
-  confirmPasswoed(g:AbstractControl){
-    return g.get('password')?.value==g.get('password')?.value? null:{mismatch:true};
-  }
-  
+  private readonly _FormBuilder=inject(FormBuilder);
+  private readonly _AuthService=inject(AuthService);
+  private readonly _Router=inject(Router);
+
+  register:FormGroup=this._FormBuilder.group({
+    name:[null, signupValidators.name],
+    email:[null, signupValidators.email],
+    password:[null, signupValidators.password],
+    rePassword:[null],
+  },{validators:[confirmPassword]})
+
   sendData(){
-   if(this.registerForm.valid){
-    console.log(this.registerForm.value)
+   this.isButton=true;
+   if(this.register.valid){
+    this._AuthService.signup(this.register.value).subscribe({
+      next:(res)=>{
+        console.log(res);
+        this.isButton=false;
+        this._Router.navigate(['/signin']);
+      },
+      error:(err:HttpErrorResponse)=>{
+        this.errorMessage=err.error.message;
+        this.isButton=false;
+      }
+    })
    }
   }
 }
