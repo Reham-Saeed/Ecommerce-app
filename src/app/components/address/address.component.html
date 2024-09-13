@@ -1,0 +1,17 @@
+<section class="p-10">
+ <div class="container">
+  <form [formGroup]="addrees" (ngSubmit)="payment()" class="form-style">
+   <h2 class="text-main font-bold">Address</h2>
+   <textarea formControlName="details" placeholder="Details" class="isvalid"></textarea>
+   <alertError [formName]="addrees" controlName="details"/>
+   <input formControlName="phone" type="tel" placeholder="Phone" class="isvalid">
+   <alertError [formName]="addrees" controlName="phone"/>
+   <input formControlName="city" type="text" placeholder="City" class="isvalid">
+   <alertError [formName]="addrees" controlName="city"/>
+   <div class="flex justify-between">
+    <button (click)="payment()" class="btn bg-main text-white my-2 p-2 rounded" [disabled]="addrees.invalid">Place Order</button>
+   </div>
+  </form>
+ </div>
+</section>
+

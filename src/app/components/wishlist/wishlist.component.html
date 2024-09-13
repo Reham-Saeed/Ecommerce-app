@@ -1,0 +1,28 @@
+<section class="px-16">
+ @if (wishlist?.count!=0) {
+  <div class="container bg-main-light rounded my-10 py-5">
+   <h1 class="text-xl font-bold">{{"headers.myWishlist"|translate}}</h1>
+   @for (wishItem of wishlist?.data; track $index) {
+    <div class="md:flex my-2 gap-4 border-b py-4">
+      <div class="md:w-1/12 w-full">
+       <img [src]="wishItem?.imageCover" class="w-full" alt="wishlist-item-img">
+      </div>
+      <div class="md:w-11/12 flex justify-between items-center mt-5">
+       <div>
+        <h4>{{wishItem.title.split(' ').slice(0,3).join(' ')}}</h4>
+        <p>{{"headers.price"|translate}} {{wishItem?.price}} {{"headers.egp"|translate}} </p>
+        <button (click)="removeWishlistItem(wishItem.id)" class="text-main"><i class="fa-solid fa-trash-can"></i> {{"buttons.remove"|translate}}</button>
+       </div>
+       <div>
+        <button (click)="addProductToCart(wishItem.id)" class="btn">{{"buttons.addToCart"|translate}}</button>
+       </div>
+      </div>
+     </div>
+   }
+  </div>
+ }@else {
+  <div class="container my-5 py-36 flex justify-center">
+   <h1 class="text-main font-bold text-4xl">{{"headers.emptyWishlist"|translate}} <i class="fa-regular fa-face-sad-cry"></i></h1>
+  </div>
+ }
+</section>

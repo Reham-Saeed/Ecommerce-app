@@ -1,1 +1,41 @@
-<p>cart works!</p>
+<section class="px-16">
+ @if (cart?.numOfCartItems != 0) {
+  <div class="container bg-main-light rounded my-10 py-5">
+   <div class="flex justify-between items-center">
+    <div>
+    <h1 class="text-xl font-bold">{{"headers.shopCart"|translate}}</h1>
+    <p>{{"headers.totalPrice"|translate}} {{cart?.data?.totalCartPrice}}<span class="text-sm"> {{"headers.egp"|translate}}</span> </p>
+    </div>
+    <div>
+     <button [routerLink]="'/address/'+cart?.cartId" class="btn">{{"buttons.checkOut"|translate}}</button>
+    </div>
+   </div>
+   @for (product of cart?.data?.products; track $index) {
+    <div class="md:flex my-2 gap-4 border-b py-4">
+     <div class="md:w-1/12 w-full">
+      <img [src]="product?.product?.imageCover" class="w-full" alt="cart-item-img">
+     </div>
+     <div class="md:w-11/12 flex justify-between items-center mt-5">
+      <div>
+       <h4>{{product?.product?.title?.split(' ')?.slice(0,3)?.join(' ')}}</h4>
+       <p>{{"headers.price"|translate}}{{product?.price}}<span class="text-sm"> {{"headers.egp"|translate}}</span> </p>
+       <button (click)="removeCartItem(product.product._id)" class="text-main"><i class="fa-solid fa-trash-can"></i>{{"buttons.remove"|translate}}</button>
+      </div>
+      <div>
+       <button (click)="updateCartProductQTY(product.product._id,product.count+1)" class="px-2 main-border text-2xl">+</button>
+       <span class="mx-3 text-xl">{{product?.count}}</span>
+       <button (click)="updateCartProductQTY(product.product._id,product.count-1)" class="px-2 main-border text-2xl">-</button>
+      </div>
+     </div>
+    </div>
+   }
+   <div class="flex justify-center">
+    <button (click)="clearUserCart()" class="main-border p-2 my-4">{{"buttons.clearYourCart"|translate}}</button>
+   </div>
+  </div>
+ }@else {
+  <div class="container my-5 py-36 flex justify-center">
+   <h1 class="text-main font-bold text-4xl">{{"headers.emptyCart"|translate}} <i class="fa-regular fa-face-sad-cry"></i></h1>
+  </div>
+ }
+</section>

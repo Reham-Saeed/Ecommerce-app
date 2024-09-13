@@ -9,6 +9,6 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrl: './alert-error.component.scss'
 })
 export class AlertErrorComponent {
-@Input() formName!:FormGroup;
-@Input() controlName!:string;
+  @Input() formName!:FormGroup;
+  @Input() controlName!:string;
 }

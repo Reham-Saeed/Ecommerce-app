@@ -1,1 +1,44 @@
-<p>products works!</p>
+<section>
+  <div class="container my-5">
+    <div class="flex justify-center">
+      <input
+        type="text"
+        [placeholder]="'placeholder.search' | translate"
+        [(ngModel)]="searchTitle"
+        class="w-10/12 isvalid my-10"
+      />
+    </div>
+    <div class="grid-screens">
+      @for (product of allProducts | search:searchTitle; track $index) {
+      <div class="product p-3 relative">
+        <i
+          [ngClass]="{ 'text-[#ff0000]': isProductInWishlist(product._id) }"
+          (click)="toggleIcon(product._id)"
+          class="fa-solid fa-heart icon absolute end-3 py-1 px-2 shadow rounded-md text-lg bg-white"
+        ></i>
+        <div [routerLink]="'/details/' + product._id">
+          <img [src]="product.imageCover" alt="product-image" />
+          <h6 class="text-main my-1">{{ product.category.name }}</h6>
+          <h5>{{ product.title.split(" ").slice(0, 3).join(" ") }}</h5>
+          <div>
+            @for (item of [1,2,3,4,5].slice(0,product.ratingsAverage); track
+            $index) {
+            <i class="fa-solid fa-star rating-color text-xs"></i>
+            } @if(product.ratingsAverage%1!=0){
+            <i class="fa-solid fa-star-half-stroke rating-color text-xs"></i>
+            }
+            <span>{{ product.ratingsAverage }}</span>
+          </div>
+          <span>{{ product.price }} {{ "headers.egp" | translate }}</span>
+        </div>
+        <button
+          (click)="addProductToCart(product._id)"
+          class="btn w-full"
+        >
+          {{ "buttons.addToCart" | translate }}
+        </button>
+      </div>
+      }
+    </div>
+  </div>
+</section>

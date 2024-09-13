@@ -14,11 +14,12 @@ export class MainSliderComponent {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: false,
-    dots: false,
+    dots: true,
+    rtl:true,
     navSpeed: 700,
-    autoplay:true,
-    autoplayTimeout:2000,
-    autoplaySpeed:1000,
+    autoplay: true,
+    autoplayTimeout: 4000,
+    autoplaySpeed: 1000,
     navText: ['', ''],
     responsive: {
       0: {
@@ -35,6 +36,5 @@ export class MainSliderComponent {
       }
     },
     nav: false
-  }
-
+  };
 }

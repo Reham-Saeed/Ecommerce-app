@@ -8,6 +8,7 @@ import { baseUrl } from '../../environment/environment.local';
 })
 export class ProductsService {
   constructor(private _HttpClient:HttpClient) { }
+  
   getProducts():Observable<any>{
     return this._HttpClient.get(baseUrl+'api/v1/products');
   }

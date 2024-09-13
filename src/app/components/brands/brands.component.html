@@ -1,9 +1,8 @@
 <div class="container my-5">
- <div class="grid sm:grid-cols-1 md:grid-cols-4 xl:grid-cols-6 gap-4">
+ <div class="grid-screens">
    @for (brand of allBrands; track $index) {
-   <div class="product p-3">
+   <div class="product p-3 border rounded-md">
      <img [src]="brand.image" alt="product-image"/>
-     <button class="btn bg-main text-white w-full my-2 py-1 rounded">Show All Items</button>
    </div>
    }
  </div>

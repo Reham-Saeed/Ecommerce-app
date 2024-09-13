@@ -4,11 +4,11 @@ import { baseUrl } from '../../environment/environment.local';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CategoriesService {
-  constructor(private _HttpClient:HttpClient) { }
-  getCategories():Observable<any>{
-    return this._HttpClient.get(baseUrl+'api/v1/categories');
+  constructor(private _HttpClient: HttpClient) {}
+  getCategories(): Observable<any> {
+    return this._HttpClient.get(baseUrl + 'api/v1/categories');
   }
 }

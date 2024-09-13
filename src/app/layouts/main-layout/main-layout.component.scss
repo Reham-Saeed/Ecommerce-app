@@ -1,0 +1,11 @@
+.upBtn{
+ position: fixed;
+ z-index: 999;
+ bottom: 20px;
+ right: 21px;
+ color:#0aad0a;
+ transition: all 0.3s;
+}
+.upBtn:hover{
+ color:#045f04 ;
+}

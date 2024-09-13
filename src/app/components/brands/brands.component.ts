@@ -1,29 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BrandsService } from '../../core/services/brands.service';
 import { Brand } from '../../core/interfaces/product';
+import { RouterLink } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-brands',
   standalone: true,
-  imports: [],
+  imports: [RouterLink,TranslateModule],
   templateUrl: './brands.component.html',
   styleUrl: './brands.component.scss'
 })
-export class BrandsComponent implements OnInit{
+export class BrandsComponent implements OnInit,OnDestroy {
   allBrands:Brand[]=[];
+  cancelSubscription:Subscription=new Subscription();
+
   constructor(private _BrandsService:BrandsService){}
   getBrands(){
-    this._BrandsService.getBrands().subscribe({
+    this.cancelSubscription=this._BrandsService.getBrands().subscribe({
       next:(res)=>{
          this.allBrands=res.data;
-      },
-      error:(error)=>{
-         console.log(error);
       }
     })
   }
   ngOnInit(): void {
     this.getBrands();
   }
-
+  ngOnDestroy():void{
+    this.cancelSubscription.unsubscribe();
+  }
 }

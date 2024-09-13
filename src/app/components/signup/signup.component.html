@@ -1,33 +1,42 @@
-<section class="p-5">
- <div class="container">
-  <form [formGroup]="register" (ngSubmit)="sendData()" class="bg-gray-100 flex flex-col gap-4 p-10 w-[60%] m-auto">
-   <label class="text-main font-bold">Register Now:</label>
-   <input formControlName="name" type="text" placeholder="Name" class="rounded p-2"
+<section class="p-10">
+ <div class="container flex justify-center">
+  <img src="../../../assets/images/signup-g.svg" class="hidden md:flex" alt="">
+  <form [formGroup]="register" (ngSubmit)="sendData()" class="form-style w-full md:w-[50%]">
+   <label class="text-main font-bold">{{"headers.registerNow" | translate}}</label>
+   <input formControlName="name" type="text" [placeholder]="'placeholder.name' | translate" class="input-style"
    [ngClass]="
    {
-    'focus:ring-green-700': !register.get('name')?.errors && (register.get('name')?.touched || register.get('name')?.dirty),
-    'focus:ring-red-400': register.get('name')?.errors && (register.get('name')?.touched || register.get('name')?.dirty)
+    'isvalid': !register.get('name')?.errors && (register.get('name')?.touched || register.get('name')?.dirty),
+    'isInvalid': register.get('name')?.errors && (register.get('name')?.touched || register.get('name')?.dirty)
    }"
    >
    <alertError [formName]="register" controlName="name"/>
-   <input formControlName="email" type="email" placeholder="Email" class="rounded p-2"
+   <input formControlName="email" type="email" [placeholder]="'placeholder.email' | translate" class="input-style"
    [ngClass]="
    {
-    'focus:ring-green-700': !register.get('email')?.errors && (register.get('email')?.touched || register.get('email')?.dirty),
-    'focus:ring-red-400': register.get('email')?.errors && (register.get('email')?.touched || register.get('email')?.dirty)
+    'isvalid': !register.get('email')?.errors && (register.get('email')?.touched || register.get('email')?.dirty),
+    'isInvalid': register.get('email')?.errors && (register.get('email')?.touched || register.get('email')?.dirty)
    }"
    >
    <alertError [formName]="register" controlName="email"/>
-   <input formControlName="password" type="password" placeholder="Password" class="rounded p-2">
+   <input formControlName="password" type="password" [placeholder]="'placeholder.password' | translate" class="input-style"
+   [ngClass]="
+   {
+    'isvalid': !register.get('password')?.errors && (register.get('password')?.touched || register.get('password')?.dirty),
+    'isInvalid': register.get('password')?.errors && (register.get('password')?.touched || register.get('password')?.dirty)
+   }"
+   >
    <alertError [formName]="register" controlName="password"/>
-   <input formControlName="rePassword" type="password" placeholder="Repassword" class="rounded p-2">
+   <input formControlName="rePassword" type="password" [placeholder]="'placeholder.rePassword' | translate" class="input-style"
+   [ngClass]="
+   {
+    'isvalid': !register.get('rePassword')?.errors && (register.get('rePassword')?.touched || register.get('rePassword')?.dirty),
+    'isInvalid': register.get('rePassword')?.errors && (register.get('rePassword')?.touched || register.get('rePassword')?.dirty)
+   }">
    <alertError [formName]="register" controlName="rePassword"/>
    <div class="p-4 mb-4 text-sm text-red-800 rounded-lg">{{errorMessage}}</div>
-   <button class="bg-main text-white my-2 py-1 rounded" [disabled]="register.invalid||isButton">
-    @if (!isButton) {Register}
-    @else {
-     <i class="fa-solid fa-spinner fa-spin"></i>
-    }
+   <button class="btn" [disabled]="register.invalid">
+    {{"buttons.register" | translate}}
    </button>
   </form>
  </div>

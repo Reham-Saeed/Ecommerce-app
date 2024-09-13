@@ -1,9 +1,9 @@
 <section>
- <h2>Shop Popular Categories</h2>
+ <h2 class="font-bold text-lg mb-2 ms-2"><i class="fa-regular fa-star text-main"></i> {{"headers.shopPopularCategories"|translate}}</h2>
  <owl-carousel-o [options]="customOptions">
    @for (category of allCategories; track $index) {
     <ng-template carouselSlide>
-     <img [src]="category.image" class="h-[200px]" alt="category-img">
+     <img [src]="category.image" class="h-[150px]" alt="category-img">
    </ng-template>
    }
 </owl-carousel-o>

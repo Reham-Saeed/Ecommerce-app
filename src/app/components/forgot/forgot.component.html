@@ -1,49 +1,63 @@
-<section class="p-5">
+<section class="p-10">
  @if (steps==1) {
   <div class="container">
-   <form [formGroup]="forgotPassword" (ngSubmit)="submitStep1()" class="bg-gray-100 flex flex-col gap-4 p-10 w-[60%] m-auto">
-    <label class="text-main font-bold">Forget Password:</label>
-    <input formControlName="email" type="email" placeholder="Email" class="rounded p-2">
+   <form [formGroup]="forgotPassword" (ngSubmit)="submitStep1()" class="form-style w-full md:w-[60%]">
+    <label class="text-main font-bold">{{"headers.forgotPassword" | translate}}</label>
+    <input formControlName="email" type="email" [placeholder]="'placeholder.email' | translate" class="inputSztyle"
+    [ngClass]="
+   {
+    'isvalid': !forgotPassword.get('email')?.errors && (forgotPassword.get('email')?.touched || forgotPassword.get('email')?.dirty),
+    'isInvalid': forgotPassword.get('email')?.errors && (forgotPassword.get('email')?.touched || forgotPassword.get('email')?.dirty)
+   }"
+   >
     <alertError [formName]="forgotPassword" controlName="email"/>
-    <div class="p-4 mb-4 text-sm text-red-800 rounded-lg">{{errorMessage}}</div>
-    <button class="bg-main text-white my-2 py-1 rounded" [disabled]="forgotPassword.invalid||isButton">
-     @if (!isButton) {Send Code}
-     @else {
-      <i class="fa-solid fa-spinner fa-spin"></i>
-     }
+    <div class="p-4 text-sm text-red-800 rounded-lg">{{errorMessage}}</div>
+    <button class="btn bg-main text-white my-2 py-1 rounded" [disabled]="forgotPassword.invalid">
+
+      {{"buttons.sendCode" | translate}}
+
     </button>
    </form>
   </div>
  }
  @else if (steps==2){
   <div class="container">
-   <form [formGroup]="verifyResetCode" (ngSubmit)="submitStep2()" class="bg-gray-100 flex flex-col gap-4 p-10 w-[60%] m-auto">
-    <label class="text-main font-bold">Reset Code:</label>
-    <input formControlName="resetCode" type="text" placeholder="Code" class="rounded p-2">
-    <div class="p-4 mb-4 text-sm text-red-800 rounded-lg">{{errorMessage}}</div>
-    <button class="bg-main text-white my-2 py-1 rounded" [disabled]="verifyResetCode.invalid||isButton">
-     @if (!isButton) {Verify}
-     @else {
-      <i class="fa-solid fa-spinner fa-spin"></i>
-     }
+   <form [formGroup]="verifyResetCode" (ngSubmit)="submitStep2()" class="form-style w-full md:w-[60%]">
+    <label class="text-main font-bold"> {{"headers.resetCode" | translate}}</label>
+    <input formControlName="resetCode" type="text" [placeholder]="'placeholder.code' | translate" class="input-style isvalid">
+    <div class="p-4 text-sm text-red-800 rounded-lg">{{errorMessage}}</div>
+    <button class="btn bg-main text-white my-2 py-1 rounded" [disabled]="verifyResetCode.invalid">
+
+      {{"buttons.verify" | translate}}
+
     </button>
    </form>
   </div>
  }
  @else if (steps==3){
   <div class="container">
-   <form [formGroup]="resetPassword" (ngSubmit)="submitStep3()" class="bg-gray-100 flex flex-col gap-4 p-10 w-[60%] m-auto">
-    <label class="text-main font-bold">Reset Password:</label>
-    <input formControlName="email" type="email" placeholder="Email" class="rounded p-2">
+   <form [formGroup]="resetPassword" (ngSubmit)="submitStep3()" class="form-style w-full md:w-[60%]">
+    <label class="text-main font-bold">{{"headers.resetPassword" | translate}}</label>
+    <input formControlName="email" type="email" [placeholder]="'placeholder.email' | translate" class="inputSztyle"
+    [ngClass]="
+   {
+    'isvalid': !resetPassword.get('email')?.errors && (resetPassword.get('email')?.touched || resetPassword.get('email')?.dirty),
+    'isInvalid': resetPassword.get('email')?.errors && (resetPassword.get('email')?.touched || resetPassword.get('email')?.dirty)
+   }"
+    >
     <alertError [formName]="resetPassword" controlName="email"/>
-    <input formControlName="newPassword" type="password" placeholder="New Password" class="rounded p-2">
+    <input formControlName="newPassword" type="password"[placeholder]="'placeholder.newPassword'| translate" class="inputSztyle"
+    [ngClass]="
+   {
+    'isvalid': !resetPassword.get('newPassword')?.errors && (resetPassword.get('newPassword')?.touched ||resetPassword.get('newPassword')?.dirty),
+    'isInvalid': resetPassword.get('newPassword')?.errors && (resetPassword.get('newPassword')?.touched ||resetPassword.get('newPassword')?.dirty)
+   }">
     <alertError [formName]="resetPassword" controlName="newPassword"/>
-    <div class="p-4 mb-4 text-sm text-red-800 rounded-lg">{{errorMessage}}</div>
-    <button class="bg-main text-white my-2 py-1 rounded" [disabled]="resetPassword.invalid||isButton">
-     @if (!isButton) {Reset}
-     @else {
-      <i class="fa-solid fa-spinner fa-spin"></i>
-     }
+    <div class="p-4 text-sm text-red-800 rounded-lg">{{errorMessage}}</div>
+    <button class="btn bg-main text-white my-2 py-1 rounded" [disabled]="resetPassword.invalid">
+
+      {{"buttons.resetPassword" | translate}}
+
     </button>
    </form>
   </div>
