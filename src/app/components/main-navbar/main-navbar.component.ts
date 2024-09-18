@@ -74,6 +74,10 @@ export class MainNavbarComponent implements OnInit{
       }
     })
   }
+  toggleLangAndMenu() {
+    this.toggleLang();
+    this.toggleMenu();
+  }
   ngOnDestroy():void{
     this.cancelSubscriptions.unsubscribe();
   }

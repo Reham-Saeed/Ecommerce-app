@@ -5,21 +5,21 @@
         type="text"
         [placeholder]="'placeholder.search' | translate"
         [(ngModel)]="searchTitle"
-        class="w-10/12 isvalid my-10"
+        class="w-full md:w-10/12 isvalid my-10"
       />
     </div>
     <div class="grid-screens">
       @for (product of allProducts | search:searchTitle; track $index) {
-      <div class="product p-3 relative">
+      <div class="product p-3 relative  border border-[#0aad0a] rounded-md lg:border-none">
         <i
           [ngClass]="{ 'text-[#ff0000]': isProductInWishlist(product._id) }"
           (click)="toggleIcon(product._id)"
           class="fa-solid fa-heart icon absolute end-3 py-1 px-2 shadow rounded-md text-lg bg-white"
         ></i>
-        <div [routerLink]="'/details/' + product._id">
+        <div [routerLink]="'/details/' + product._id" class="mb-1">
           <img [src]="product.imageCover" alt="product-image" />
           <h6 class="text-main my-1">{{ product.category.name }}</h6>
-          <h5>{{ product.title.split(" ").slice(0, 3).join(" ") }}</h5>
+          <h5>{{ product.title.split(" ").slice(0,2).join(" ") }}</h5>
           <div>
             @for (item of [1,2,3,4,5].slice(0,product.ratingsAverage); track
             $index) {

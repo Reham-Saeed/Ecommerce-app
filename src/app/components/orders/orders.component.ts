@@ -19,7 +19,6 @@ export class OrdersComponent implements OnInit{
  allOrders:Order[]=[]
  order!: Order;
  userId:string="";
- totalProdPrice:number=0;
  getUserOrders(){
    this._OrderService.getUserOrders(this.userId).subscribe({
     next:(res)=>{

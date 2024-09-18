@@ -1,29 +1,82 @@
-<section class="p-10">
- <div class="container flex justify-center">
-  <img src="assets/images/signin-g.svg" class="hidden md:flex" alt="signin-img">
-  <form [formGroup]="login" (ngSubmit)="sendData()" class="form-style w-full md:w-[50%]">
-   <label class="text-main font-bold">{{"headers.login" | translate}}</label>
-   <input formControlName="email" type="email" [placeholder]="'placeholder.email' | translate" class="input-style"
-   [ngClass]="
-   {
-    'isvalid': !login.get('email')?.errors && (login.get('email')?.touched || login.get('email')?.dirty),
-    'isInvalid': login.get('email')?.errors && (login.get('email')?.touched || login.get('email')?.dirty)
-   }">
-   <alertError [formName]="login" controlName="email"/>
-   <input formControlName="password" type="password" [placeholder]="'placeholder.password' | translate" class="input-style" 
-   [ngClass]="
-   {
-    'isvalid': !login.get('password')?.errors && (login.get('password')?.touched || login.get('password')?.dirty),
-    'isInvalid': login.get('password')?.errors && (login.get('password')?.touched || login.get('password')?.dirty)
-   }">
-   <alertError [formName]="login" controlName="password"/>
-   <div class="p-4 mb-4 text-sm text-red-800 rounded-lg">{{errorMessage}}</div>
-   <span class="font-medium">{{"buttons.forgotPassword" | translate}} <a routerLink="/forgot" class="text-main font-bold hover:text-[#099309]">{{"buttons.resetIt"|translate}}</a></span>
-   <div class="flex justify-between">
-    <button class="btn w-full" [disabled]="login.invalid" type="submit">
-      {{"buttons.login" | translate}}
-    </button>
-   </div>
-  </form>
- </div>
+<section class="py-10">
+  <div class="container flex justify-center">
+    <div class="h-[300px]">
+      <img
+        src="assets/images/signin-g.svg"
+        class="hidden md:flex"
+        alt="signin-img"
+      />
+    </div>
+    <form
+      [formGroup]="login"
+      (ngSubmit)="sendData()"
+      class="form-style w-full md:w-[50%]"
+    >
+      <label class="text-main font-bold text-xl mb-4">{{
+        "headers.login" | translate
+      }}</label>
+      <input
+        formControlName="email"
+        type="email"
+        [placeholder]="'placeholder.email' | translate"
+        class="input-style"
+        [ngClass]="{
+          isvalid:
+            !login.get('email')?.errors &&
+            (login.get('email')?.touched || login.get('email')?.dirty),
+          isInvalid:
+            login.get('email')?.errors &&
+            (login.get('email')?.touched || login.get('email')?.dirty)
+        }"
+      />
+      <alertError [formName]="login" controlName="email" />
+      <div class="relative">
+        <input
+          formControlName="password"
+          [type]="passwordType"
+          [placeholder]="'placeholder.password' | translate"
+          class="input-style pr-10 w-full"
+          [ngClass]="{
+            isvalid:
+              !login.get('password')?.errors &&
+              (login.get('password')?.touched || login.get('password')?.dirty),
+            isInvalid:
+              login.get('password')?.errors &&
+              (login.get('password')?.touched || login.get('password')?.dirty)
+          }"
+        />
+        <span
+          (click)="togglePasswordVisibility()"
+          class="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-400"
+        >
+          <i
+            [class]="
+              passwordType === 'password'
+                ? 'fa-regular fa-eye-slash'
+                : 'fa-regular fa-eye'
+            "
+          ></i>
+        </span>
+      </div>
+      <alertError [formName]="login" controlName="password" />
+      <div class="px-4 text-sm text-red-800 rounded-lg">{{ errorMessage }}</div>
+      <span class="font-medium"
+        >{{ "buttons.forgotPassword" | translate }}
+        <a
+          routerLink="/forgot"
+          class="text-main font-bold hover:text-[#099309]"
+          >{{ "buttons.resetIt" | translate }}</a
+        ></span
+      >
+      <div class="flex justify-between">
+        <button
+          class="btn w-full disabled:opacity-60"
+          [disabled]="login.invalid"
+          type="submit"
+        >
+          {{ "buttons.login" | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
 </section>

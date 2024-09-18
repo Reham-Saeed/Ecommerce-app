@@ -1,17 +1,28 @@
 @if(formName.get(controlName)?.errors && (formName.get(controlName)?.touched ||
 formName.get(controlName)?.dirty) ){
-<div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-200">
+<div class="p-4  mb-4 text-sm text-red-800 rounded-lg bg-red-200">
   <ul class="m-0">
     @if(formName.get(controlName)?.getError('required')){
-    <li>Input is required.</li>
+    <li>{{"errors.required"|translate}}</li>
     } @if(formName.get(controlName)?.getError('minlength')){
-    <li>Input must be at least 2 characters long.</li>
+    <li>{{"errors.minCharacters"|translate}}</li>
     } @if(formName.get(controlName)?.getError('maxlength')){
-    <li>Input must not exceed 20 characters.</li>
+    <li>{{"errors.maxCharacters"|translate}}</li>
     } @if(formName.get(controlName)?.getError('email')){
-    <li>Please enter a valid email address .</li>
-    } @if(formName.get(controlName)?.getError('pattern')){
-    <li>Custom field should match the pattern</li>
+    <li>{{"errors.validEmail"|translate}}</li>
+    }@if(formName.get(controlName)?.getError('pattern')){
+      
+      @if(!formName.get('password')?.value?.match('[A-Z]')){
+      <li>{{"errors.uppercase"|translate}}</li>
+      }@if(!formName.get('password')?.value?.match('[a-z]')){
+      <li>{{"errors.lowercase"|translate}}</li>
+      }@if(!formName.get('password')?.value?.match('[0-9]')){
+      <li>{{"errors.number"|translate}}</li>
+      }@if(!formName.get('password')?.value?.match('[#?!@$%^&*-]')){
+      <li>{{"errors.specialCharacter"|translate}}</li>
+      }@if(formName.get('password')?.value?.length < 8){
+      <li>{{"errors.minPassword"|translate}}</li>
+      } 
     }
   </ul>
 </div>

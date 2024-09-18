@@ -1,8 +1,10 @@
-<section class="p-10">
- <div class="container flex justify-center">
-  <img src="../../../assets/images/signup-g.svg" class="hidden md:flex" alt="">
+<section class="py-10">
+ <div class="container flex justify-center ">
+  <div class="h-[300px]">
+   <img src="assets/images/signup-g.svg" class="hidden md:flex w-[90%] mt-16" alt="signup-img">
+  </div>
   <form [formGroup]="register" (ngSubmit)="sendData()" class="form-style w-full md:w-[50%]">
-   <label class="text-main font-bold">{{"headers.registerNow" | translate}}</label>
+   <label class="text-main font-bold text-xl mb-4">{{"headers.registerNow" | translate}}</label>
    <input formControlName="name" type="text" [placeholder]="'placeholder.name' | translate" class="input-style"
    [ngClass]="
    {
@@ -19,23 +21,53 @@
    }"
    >
    <alertError [formName]="register" controlName="email"/>
-   <input formControlName="password" type="password" [placeholder]="'placeholder.password' | translate" class="input-style"
+   <div class="relative">
+    <input formControlName="password" [type]="passwordType" [placeholder]="'placeholder.password' | translate" class="input-style w-full"
    [ngClass]="
    {
     'isvalid': !register.get('password')?.errors && (register.get('password')?.touched || register.get('password')?.dirty),
     'isInvalid': register.get('password')?.errors && (register.get('password')?.touched || register.get('password')?.dirty)
    }"
    >
+    <span
+      (click)="togglePasswordVisibility()"
+      class="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-400"
+    >
+      <i
+        [class]="
+          passwordType === 'password'
+            ? 'fa-regular fa-eye-slash'
+            : 'fa-regular fa-eye'
+        "
+      ></i>
+    </span>
+  </div>
+
    <alertError [formName]="register" controlName="password"/>
-   <input formControlName="rePassword" type="password" [placeholder]="'placeholder.rePassword' | translate" class="input-style"
-   [ngClass]="
-   {
-    'isvalid': !register.get('rePassword')?.errors && (register.get('rePassword')?.touched || register.get('rePassword')?.dirty),
-    'isInvalid': register.get('rePassword')?.errors && (register.get('rePassword')?.touched || register.get('rePassword')?.dirty)
-   }">
+   <div class="relative">
+    <input formControlName="rePassword" [type]="passwordType" [placeholder]="'placeholder.rePassword' | translate" class="input-style w-full"
+    [ngClass]="
+    {
+     'isvalid': !register.get('rePassword')?.errors && ((register.get('rePassword')?.touched || register.get('rePassword')?.dirty)),
+     'isInvalid': register.get('rePassword')?.errors && (register.get('rePassword')?.touched || register.get('rePassword')?.dirty)
+    }">
+    <span
+      (click)="togglePasswordVisibility()"
+      class="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-400"
+    >
+      <i
+        [class]="
+          passwordType === 'password'
+            ? 'fa-regular fa-eye-slash'
+            : 'fa-regular fa-eye'
+        "
+      ></i>
+    </span>
+  </div>
+
    <alertError [formName]="register" controlName="rePassword"/>
-   <div class="p-4 mb-4 text-sm text-red-800 rounded-lg">{{errorMessage}}</div>
-   <button class="btn" [disabled]="register.invalid">
+   <div class="px-4 text-sm text-red-800 rounded-lg">{{errorMessage}}</div>
+   <button class="btn disabled:opacity-60" [disabled]="register.invalid">
     {{"buttons.register" | translate}}
    </button>
   </form>

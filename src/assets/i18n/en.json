@@ -51,7 +51,7 @@
     "price": "Price: ",
     "egp": "EGP",
     "myWishlist":"My Wishlist",
-    "emptyWishlist":"Wishlist is empty",
+    "emptyWishlist":"Wishlist is empty ",
     "emptyCart":"Cart is empty",
     "getTheFreshcartApp": "Get the Freshcart app",
     "paragraph": "We will send you a link,open it in your phone to download the app",
@@ -68,6 +68,20 @@
     "priceTable":"Price",
     "total":"Total",
     "brand":"Brand:",
-    "category":"Category:"
+    "category":"Category:",
+    "noOrders":"There is no orders"
+    
+  },
+  "errors":{
+    "required":"Input is required.",
+    "minCharacters":"Input must be at least 2 characters long.",
+    "maxCharacters":"Input must not exceed 20 characters.",
+    "validEmail":"Please enter a valid email address.",
+    "uppercase":"At least one uppercase letter (A-Z).",
+    "lowercase":"At least one lowercase letter (a-z).",
+    "number":"At least one numeric digit (0-9).",
+    "specialCharacter":"At least one special character.",
+    "minPassword":"password must be at least 8 characters long."
   }
+
 }

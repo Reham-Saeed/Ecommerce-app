@@ -11,7 +11,7 @@ import { TranslationService } from '../../core/services/translation.service';
   templateUrl: './auth-navbar.component.html',
   styleUrl: './auth-navbar.component.scss',
 })
-export class AuthNavbarComponent implements OnInit{
+export class AuthNavbarComponent implements OnInit {
   private readonly _TranslationService = inject(TranslationService);
   readonly _TranslateService = inject(TranslateService);
 
@@ -24,7 +24,10 @@ export class AuthNavbarComponent implements OnInit{
     const newLang = this._TranslateService.currentLang === 'en' ? 'ar' : 'en';
     this.selectLang(newLang);
   }
-
+  toggleLangAndMenu() {
+    this.toggleLang();
+    this.toggleMenu();
+  }
   selectLang(lang: string): void {
     this._TranslationService.changeLang(lang);
   }

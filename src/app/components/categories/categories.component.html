@@ -1,8 +1,8 @@
 <div class="container my-5">
  <div class="grid-screens">
    @for (category of allCategories; track $index) {
-   <div class="product p-3 border rounded-md">
-     <img [src]="category.image" class="w-full sm:h-[150px]" alt="product-image"/>
+   <div class="product p-3 border border-[#0aad0a] rounded-md lg:border-none">
+     <img [src]="category.image" class="w-full sm:h-[150px] mb-1" alt="product-image"/>
      <button class="btn w-full">{{category.name}}</button>
    </div>
    }

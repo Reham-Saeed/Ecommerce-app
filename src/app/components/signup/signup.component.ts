@@ -31,7 +31,11 @@ export class SignupComponent implements OnDestroy{
     password:[null, signupValidators.password],
     rePassword:[null],
   },{validators:[confirmPassword]})
-
+  passwordType: string = 'password';
+  
+  togglePasswordVisibility(): void {
+    this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
+  }
   sendData(){
    if(this.register.valid){
     this.cancleSubscription=this._AuthService.signup(this.register.value).subscribe({

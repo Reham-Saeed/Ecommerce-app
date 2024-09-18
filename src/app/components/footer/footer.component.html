@@ -1,36 +1,38 @@
 <footer class="bg-gray-100 py-6">
   <div class="container">
-    <h1>{{ "headers.getTheFreshcartApp" | translate }}</h1>
-    <p>{{ "headers.paragraph" | translate }}</p>
-    <div class="p-2">
-      <div class="flex items-center gap-2">
+    <h1 class="font-medium">{{ "headers.getTheFreshcartApp" | translate }}</h1>
+    <p class="text-gray-600 ">{{ "headers.paragraph" | translate }}</p>
+    <div class="mt-2">
+      <div class="md:flex items-center gap-2 p-0 md:p-2">
         <input
           type="email"
           [placeholder]="'placeholder.email' | translate"
-          class="flex-grow isvalid px-4 py-2 border rounded"
+          class="flex-grow isvalid px-4 py-2 border rounded w-full md:w-0"
         />
-        <button class="bg-main text-white rounded px-4 py-1.5">
+        <button class="bg-main text-white rounded px-4 py-1.5 mt-2">
           {{ "buttons.shareAppLink" | translate }}
         </button>
       </div>
-      <hr class="my-5" />
+      <hr class="my-4" />
       <div class="lg:flex justify-between items-center">
-        <div class="flex items-center justify-center gap-3 lg:justify-start">
-          <span>{{ "headers.paymentPartners" | translate }}</span>
-          <img src="assets/images/Amazon_Pay_logo.svg.png" width="60" alt="" />
-          <img src="assets/images/American_Express.png" width="60" alt="" />
-          <img src="assets/images/MasterCard_Logo.svg.png" width="60" alt="" />
-          <img src="assets/images/PayPal.svg.png" width="60" alt="" />
+        <div class="flex flex-wrap items-center gap-3">
+          <span class="font-medium">{{ "headers.paymentPartners" | translate }}</span>
+        <div class="flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+          <img src="assets/images/Amazon_Pay_logo.svg.png" width="60" alt="Amazon-Pay-logo"/>
+          <img src="assets/images/American_Express.png" width="60" alt="American-Express-logo" />
+          <img src="assets/images/MasterCard_Logo.svg.png" width="60" alt="MasterCard-Logo" />
+          <img src="assets/images/PayPal.svg.png" width="60" alt="PayPal-logo" />
+        </div>
         </div>
         <div
-          class="flex items-center justify-center gap-1 lg:justify-start mt-4 lg:mt-0"
+          class="flex items-center gap-1 mt-4 lg:mt-0"
         >
-          <span>{{ "headers.getDelivries" | translate }}</span>
-          <img src="assets/images/get-apple-store.png" width="100" alt="" />
-          <img src="assets/images/get-google-play.png" width="100" alt="" />
+          <span class="font-medium">{{ "headers.getDelivries" | translate }}</span>
+          <img src="assets/images/get-apple-store.png" width="100" alt="apple-store-logo" />
+          <img src="assets/images/get-google-play.png" width="100" alt="google-play-logo" />
         </div>
       </div>
-      <hr class="my-5" />
+      <hr class="my-4" />
     </div>
   </div>
 </footer>

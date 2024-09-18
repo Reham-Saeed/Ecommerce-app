@@ -1,16 +1,39 @@
 <nav class="bg-gray-100 py-2 lg:py-5 px-0 lg:px-20">
- <div class="container lg:flex lg:justify-between lg:items-center">
-  <div class="flex lg:flex-none items-center justify-between text-3xl">
-    <img src="assets/images/freshcart-logo.svg" alt="freshcart-logo" />
-    <button class="fa-solid fa-bars navbar-btn lg:hidden" (click)="toggleMenu()"></button>
+  <div class="container lg:flex lg:justify-between lg:items-center">
+    <div class="flex lg:flex-none items-center justify-between text-3xl">
+      <img src="assets/images/freshcart-logo.svg" alt="freshcart-logo" />
+      <button
+        class="fa-solid fa-bars navbar-btn lg:hidden"
+        (click)="toggleMenu()"
+      ></button>
+    </div>
+    <ul
+      class="hidden lg:flex gap-10 items-center"
+      [ngClass]="{ hidden: !isMenuOpen }"
+    >
+      <li>
+        <a (click)="toggleLangAndMenu()" class="nav-a">
+          {{ _TranslateService.currentLang === "en" ? "العربية" : "English" }}
+        </a>
+      </li>
+      <li>
+        <a
+          (click)="toggleMenu()"
+          routerLink="/signin"
+          routerLinkActive="text-main"
+          class="nav-a"
+          >{{ "navbar.signin" | translate }}</a
+        >
+      </li>
+      <li>
+        <a
+          (click)="toggleMenu()"
+          routerLink="/signup"
+          routerLinkActive="text-main"
+          class="nav-a"
+          >{{ "navbar.signup" | translate }}</a
+        >
+      </li>
+    </ul>
   </div>
-  <ul class="hidden lg:flex gap-10 items-center" [ngClass]="{'hidden': !isMenuOpen}">
-    <li><a (click)="toggleLang()">
-      {{ _TranslateService.currentLang === 'en' ?'العربية': 'English'  }}
-      </a>
-    </li>
-    <li><a (click)="toggleMenu()" routerLink="/signin" routerLinkActive="">{{"navbar.signin"|translate}}</a></li>
-    <li><a (click)="toggleMenu()" routerLink="/signup" routerLinkActive="">{{"navbar.signup"|translate}}</a></li>
-  </ul>
- </div>
 </nav>

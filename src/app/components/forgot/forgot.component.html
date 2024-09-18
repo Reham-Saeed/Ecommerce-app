@@ -2,7 +2,7 @@
  @if (steps==1) {
   <div class="container">
    <form [formGroup]="forgotPassword" (ngSubmit)="submitStep1()" class="form-style w-full md:w-[60%]">
-    <label class="text-main font-bold">{{"headers.forgotPassword" | translate}}</label>
+    <label class="text-main font-bold text-xl mb-4">{{"headers.forgotPassword" | translate}}</label>
     <input formControlName="email" type="email" [placeholder]="'placeholder.email' | translate" class="inputSztyle"
     [ngClass]="
    {
@@ -23,7 +23,7 @@
  @else if (steps==2){
   <div class="container">
    <form [formGroup]="verifyResetCode" (ngSubmit)="submitStep2()" class="form-style w-full md:w-[60%]">
-    <label class="text-main font-bold"> {{"headers.resetCode" | translate}}</label>
+    <label class="text-main font-bold text-xl mb-4"> {{"headers.resetCode" | translate}}</label>
     <input formControlName="resetCode" type="text" [placeholder]="'placeholder.code' | translate" class="input-style isvalid">
     <div class="p-4 text-sm text-red-800 rounded-lg">{{errorMessage}}</div>
     <button class="btn bg-main text-white my-2 py-1 rounded" [disabled]="verifyResetCode.invalid">
@@ -37,7 +37,7 @@
  @else if (steps==3){
   <div class="container">
    <form [formGroup]="resetPassword" (ngSubmit)="submitStep3()" class="form-style w-full md:w-[60%]">
-    <label class="text-main font-bold">{{"headers.resetPassword" | translate}}</label>
+    <label class="text-main font-bold text-xl mb-4">{{"headers.resetPassword" | translate}}</label>
     <input formControlName="email" type="email" [placeholder]="'placeholder.email' | translate" class="inputSztyle"
     [ngClass]="
    {
