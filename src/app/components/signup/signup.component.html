@@ -48,8 +48,8 @@
     <input formControlName="rePassword" [type]="passwordType" [placeholder]="'placeholder.rePassword' | translate" class="input-style w-full"
     [ngClass]="
     {
-     'isvalid': !register.get('rePassword')?.errors && ((register.get('rePassword')?.touched || register.get('rePassword')?.dirty)),
-     'isInvalid': register.get('rePassword')?.errors && (register.get('rePassword')?.touched || register.get('rePassword')?.dirty)
+     'isvalid': !register.getError('mismatch') && (register.get('rePassword')?.touched || register.get('rePassword')?.dirty),
+     'isInvalid': register.getError('mismatch') && (register.get('rePassword')?.touched || register.get('rePassword')?.dirty)
     }">
     <span
       (click)="togglePasswordVisibility()"

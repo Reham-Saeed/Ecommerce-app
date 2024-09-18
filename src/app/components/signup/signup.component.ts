@@ -45,7 +45,6 @@ export class SignupComponent implements OnDestroy{
       },
       error:(err:HttpErrorResponse)=>{
         console.log(err?.error?.message);
-
         this.errorMessage=err?.error?.message;
       }
     })

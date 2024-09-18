@@ -1,33 +1,31 @@
 @if(formName.get(controlName)?.errors && (formName.get(controlName)?.touched ||
 formName.get(controlName)?.dirty) ){
-<div class="p-4  mb-4 text-sm text-red-800 rounded-lg bg-red-200">
+<div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-200">
   <ul class="m-0">
     @if(formName.get(controlName)?.getError('required')){
-    <li>{{"errors.required"|translate}}</li>
+    <li>{{ "errors.required" | translate }}</li>
     } @if(formName.get(controlName)?.getError('minlength')){
-    <li>{{"errors.minCharacters"|translate}}</li>
+    <li>{{ "errors.minCharacters" | translate }}</li>
     } @if(formName.get(controlName)?.getError('maxlength')){
-    <li>{{"errors.maxCharacters"|translate}}</li>
+    <li>{{ "errors.maxCharacters" | translate }}</li>
     } @if(formName.get(controlName)?.getError('email')){
-    <li>{{"errors.validEmail"|translate}}</li>
+    <li>{{ "errors.validEmail" | translate }}</li>
     }@if(formName.get(controlName)?.getError('pattern')){
-      
-      @if(!formName.get('password')?.value?.match('[A-Z]')){
-      <li>{{"errors.uppercase"|translate}}</li>
-      }@if(!formName.get('password')?.value?.match('[a-z]')){
-      <li>{{"errors.lowercase"|translate}}</li>
-      }@if(!formName.get('password')?.value?.match('[0-9]')){
-      <li>{{"errors.number"|translate}}</li>
-      }@if(!formName.get('password')?.value?.match('[#?!@$%^&*-]')){
-      <li>{{"errors.specialCharacter"|translate}}</li>
-      }@if(formName.get('password')?.value?.length < 8){
-      <li>{{"errors.minPassword"|translate}}</li>
-      } 
-    }
+    @if(!formName.get('password')?.value?.match('[A-Z]')){
+    <li>{{ "errors.uppercase" | translate }}</li>
+    }@if(!formName.get('password')?.value?.match('[a-z]')){
+    <li>{{ "errors.lowercase" | translate }}</li>
+    }@if(!formName.get('password')?.value?.match('[0-9]')){
+    <li>{{ "errors.number" | translate }}</li>
+    }@if(!formName.get('password')?.value?.match('[#?!@$%^&*-]')){
+    <li>{{ "errors.specialCharacter" | translate }}</li>
+    }@if(formName.get('password')?.value?.length < 8){
+    <li>{{ "errors.minPassword" | translate }}</li>
+    } }
   </ul>
 </div>
-}@else if(formName.getError('mismatch') && formName.get(controlName)?.touched &&
-controlName=='rePassword'){
+}@else if(formName.getError('mismatch') && (formName.get(controlName)?.touched
+|| formName.get(controlName)?.dirty) && controlName=='rePassword'){
 <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-200">
   <ul class="m-0">
     <li>Passwords do not match.</li>
