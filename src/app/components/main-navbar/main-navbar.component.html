@@ -58,7 +58,7 @@
     </div>
     <ul class="hidden xl:flex xl:items-center" [ngClass]="{ hidden: !isMenuOpen }">
       <li class="relative">
-        <a (click)="toggleLangAndMenu()" class="px-2 py-0.5 xl:ltr:border-r xl:rtl:border-l xl:border-black nav-a">
+        <a (click)="toggleLangAndMenu()" class="px-3 xl:px-2 xl:py-0.5 xl:ltr:border-r xl:rtl:border-l xl:border-black nav-a">
           {{ _TranslateService.currentLang === "en" ? "العربية" : "English" }}
         </a>
       </li>
@@ -67,7 +67,7 @@
           (click)="toggleMenu()"
           routerLink="/wishlist"
           routerLinkActive="text-main"
-          class="relative flex items-center rtl:pl-6 rtl:pr-2 ltr:pr-6 ltr:pl-2 xl:rtl:border-l xl:ltr:border-r xl:border-black nav-a"
+          class="relative flex items-center px-3 xl:rtl:pl-6 xl:rtl:pr-2 xl:ltr:pr-6 xl:ltr:pl-2 xl:rtl:border-l xl:ltr:border-r xl:border-black nav-a"
         >
           {{ "navbar.wishlist" | translate }}
           <i class="fa-regular fa-heart"></i>
@@ -87,7 +87,7 @@
           (click)="toggleMenu()"
           routerLink="/cart"
           routerLinkActive="text-main"
-          class="relative flex items-center rtl:pl-6 rtl:pr-2 ltr:pr-6 ltr:pl-2 xl:rtl:border-l xl:ltr:border-r xl:border-black nav-a"
+          class="relative flex items-center px-3 xl:rtl:pl-6 xl:rtl:pr-2 xl:ltr:pr-6 xl:ltr:pl-2  xl:rtl:border-l xl:ltr:border-r xl:border-black nav-a"
         >
           {{ "navbar.cart" | translate }}
           <i class="fa-brands fa-opencart"></i>
