@@ -35,8 +35,6 @@ export class CartComponent implements OnInit {
         this.cart=res;
         this._CartService.carCounter.next(res.numOfCartItems);
         this.toastr.success('Product deleted successfully','',{
-          progressBar:true,
-          progressAnimation:'increasing',
           timeOut:1000,
         })
         console.log(res);
