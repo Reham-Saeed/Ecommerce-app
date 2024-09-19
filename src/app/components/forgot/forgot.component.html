@@ -1,9 +1,9 @@
 <section class="p-10">
  @if (steps==1) {
-  <div class="container">
-   <form [formGroup]="forgotPassword" (ngSubmit)="submitStep1()" class="form-style w-full md:w-[60%]">
+  <div class="container m-auto">
+   <form [formGroup]="forgotPassword" (ngSubmit)="submitStep1()" class="form-style m-auto w-full md:w-[60%]">
     <label class="text-main font-bold text-xl mb-4">{{"headers.forgotPassword" | translate}}</label>
-    <input formControlName="email" type="email" [placeholder]="'placeholder.email' | translate" class="inputSztyle"
+    <input formControlName="email" type="email" [placeholder]="'placeholder.email' | translate" class="input-style"
     [ngClass]="
    {
     'isvalid': !forgotPassword.get('email')?.errors && (forgotPassword.get('email')?.touched || forgotPassword.get('email')?.dirty),
@@ -22,7 +22,7 @@
  }
  @else if (steps==2){
   <div class="container">
-   <form [formGroup]="verifyResetCode" (ngSubmit)="submitStep2()" class="form-style w-full md:w-[60%]">
+   <form [formGroup]="verifyResetCode" (ngSubmit)="submitStep2()" class="form-style m-auto w-full md:w-[60%]">
     <label class="text-main font-bold text-xl mb-4"> {{"headers.resetCode" | translate}}</label>
     <input formControlName="resetCode" type="text" [placeholder]="'placeholder.code' | translate" class="input-style isvalid">
     <div class="p-4 text-sm text-red-800 rounded-lg">{{errorMessage}}</div>
@@ -36,9 +36,9 @@
  }
  @else if (steps==3){
   <div class="container">
-   <form [formGroup]="resetPassword" (ngSubmit)="submitStep3()" class="form-style w-full md:w-[60%]">
+   <form [formGroup]="resetPassword" (ngSubmit)="submitStep3()" class="form-style m-auto w-full md:w-[60%]">
     <label class="text-main font-bold text-xl mb-4">{{"headers.resetPassword" | translate}}</label>
-    <input formControlName="email" type="email" [placeholder]="'placeholder.email' | translate" class="inputSztyle"
+    <input formControlName="email" type="email" [placeholder]="'placeholder.email' | translate" class="input-style"
     [ngClass]="
    {
     'isvalid': !resetPassword.get('email')?.errors && (resetPassword.get('email')?.touched || resetPassword.get('email')?.dirty),
@@ -46,12 +46,26 @@
    }"
     >
     <alertError [formName]="resetPassword" controlName="email"/>
-    <input formControlName="newPassword" type="password"[placeholder]="'placeholder.newPassword'| translate" class="inputSztyle"
+    <div class="relative">
+      <input formControlName="newPassword" [type]="passwordType" [placeholder]="'placeholder.newPassword'| translate" class="input-style w-full"
     [ngClass]="
    {
     'isvalid': !resetPassword.get('newPassword')?.errors && (resetPassword.get('newPassword')?.touched ||resetPassword.get('newPassword')?.dirty),
     'isInvalid': resetPassword.get('newPassword')?.errors && (resetPassword.get('newPassword')?.touched ||resetPassword.get('newPassword')?.dirty)
    }">
+      <span
+        (click)="togglePasswordVisibility()"
+        class="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-400"
+      >
+        <i
+          [class]="
+            passwordType === 'password'
+              ? 'fa-regular fa-eye-slash'
+              : 'fa-regular fa-eye'
+          "
+        ></i>
+      </span>
+    </div>
     <alertError [formName]="resetPassword" controlName="newPassword"/>
     <div class="p-4 text-sm text-red-800 rounded-lg">{{errorMessage}}</div>
     <button class="btn bg-main text-white my-2 py-1 rounded" [disabled]="resetPassword.invalid">

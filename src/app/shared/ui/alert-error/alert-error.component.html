@@ -11,15 +11,15 @@ formName.get(controlName)?.dirty) ){
     } @if(formName.get(controlName)?.getError('email')){
     <li>{{ "errors.validEmail" | translate }}</li>
     }@if(formName.get(controlName)?.getError('pattern')){
-    @if(!formName.get('password')?.value?.match('[A-Z]')){
+    @if(!formName.get(controlName)?.value?.match('[A-Z]')){
     <li>{{ "errors.uppercase" | translate }}</li>
-    }@if(!formName.get('password')?.value?.match('[a-z]')){
+    }@if(!formName.get(controlName)?.value?.match('[a-z]')){
     <li>{{ "errors.lowercase" | translate }}</li>
-    }@if(!formName.get('password')?.value?.match('[0-9]')){
+    }@if(!formName.get(controlName)?.value?.match('[0-9]')){
     <li>{{ "errors.number" | translate }}</li>
-    }@if(!formName.get('password')?.value?.match('[#?!@$%^&*-]')){
+    }@if(!formName.get(controlName)?.value?.match('[#?!@$%^&*-]')){
     <li>{{ "errors.specialCharacter" | translate }}</li>
-    }@if(formName.get('password')?.value?.length < 8){
+    }@if(formName.get(controlName)?.value?.length < 8){
     <li>{{ "errors.minPassword" | translate }}</li>
     } }
   </ul>

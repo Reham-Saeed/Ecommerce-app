@@ -79,6 +79,9 @@ export class HomeComponent implements OnInit,OnDestroy{
         localStorage.setItem('wishlistItems', JSON.stringify(this.wishlistItems));
         this._WishlistService.wishlistCounter.next(res.data.length);
         console.log(res);
+        this.toastr.success('Product removed successfully from your wishlist','',{
+          timeOut:1000,
+        })
       }
     })
     this.cancleSubscriptions.add(cancleSubscription);

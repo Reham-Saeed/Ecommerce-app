@@ -35,7 +35,11 @@ export class ForgotComponent implements OnInit,OnDestroy{
     email:[null, signupValidators.email],
     newPassword:[null, signupValidators.password],
   })
-
+  passwordType: string = 'password';
+  
+  togglePasswordVisibility(): void {
+    this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
+  }
   submitStep1(){
    this.errorMessage="";
    if(this.forgotPassword.valid){
