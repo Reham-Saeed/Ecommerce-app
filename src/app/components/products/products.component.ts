@@ -11,6 +11,7 @@ import { SearchPipe } from '../../core/pipes/search.pipe';
 import { TranslateModule } from '@ngx-translate/core';
 import { WishlistService } from '../../core/services/wishlist.service';
 import { NgClass } from '@angular/common';
+import { Data } from '../../core/interfaces/wishlist';
 
 @Component({
   selector: 'app-products',
@@ -23,9 +24,8 @@ export class ProductsComponent implements OnInit,OnDestroy{
   searchTitle:string='';
   allProducts:product[]=[];
   wishlistItems: string[] = [];
-  cancelSubscriptions:Subscription=new Subscription();
+  cancleSubscriptions:Subscription=new Subscription();
 
-  
   constructor(
     private _ProductsService:ProductsService, 
     private token:AuthService,
@@ -35,19 +35,25 @@ export class ProductsComponent implements OnInit,OnDestroy{
 
     this.token.saveUserData();
   }
-
   getProducts(){
-    const cancel22Subscription=this._ProductsService.getProducts().subscribe({
+    const cancleSubscription=this._ProductsService.getProducts().subscribe({
       next:(res)=>
       {
         this.allProducts=res.data;
       }
     })
-    this.cancelSubscriptions.add(cancel22Subscription);
+    this.cancleSubscriptions.add(cancleSubscription);
   }
-
+  getLoggedUserWishlist() {
+    const cancleSubscription = this._WishlistService.getLoggedUserWishlist().subscribe({
+      next: (res) => {
+        this.wishlistItems = res.data.map((item:Data) => item._id); // Extract IDs from the API response
+      }
+    });
+    this.cancleSubscriptions.add(cancleSubscription);
+  }
   addProductToCart(productId:string){
-    const cancelSubscription=this._CartService.addProductToCart(productId).subscribe({
+    const cancleSubscription=this._CartService.addProductToCart(productId).subscribe({
       next:(res)=>{
         this._CartService.carCounter.next(res.numOfCartItems);
         this.toastr.success('Product added successfully','',{
@@ -55,36 +61,32 @@ export class ProductsComponent implements OnInit,OnDestroy{
         })
       }
     })
-    this.cancelSubscriptions.add(cancelSubscription);
+    this.cancleSubscriptions.add(cancleSubscription);
   }
-
   addProductToWishlist(productId:string){
-    const cancelSubscription=this._WishlistService.addProductToWishlist(productId).subscribe({
+    const cancleSubscription=this._WishlistService.addProductToWishlist(productId).subscribe({
       next:(res)=>{
         this.wishlistItems.push(productId);
-        localStorage.setItem('wishlistItems', JSON.stringify(this.wishlistItems));
         this._WishlistService.wishlistCounter.next(res.data.length);
         this.toastr.success('Product added successfully to your wishlist','',{
-          progressBar:true,
-          progressAnimation:'increasing',
           timeOut:1000,
         })
       }
     })
-    this.cancelSubscriptions.add(cancelSubscription);
+    this.cancleSubscriptions.add(cancleSubscription);
   }
-
   removeWishlistItem(productId:string){
-    const cancelSubscription=this._WishlistService.removeWishlistItem(productId).subscribe({
+    const cancleSubscription=this._WishlistService.removeWishlistItem(productId).subscribe({
       next:(res)=>{
         this.wishlistItems = this.wishlistItems.filter(id => id !== productId);
-        localStorage.setItem('wishlistItems', JSON.stringify(this.wishlistItems));
         this._WishlistService.wishlistCounter.next(res.data.length);
+        this.toastr.success('Product removed successfully from your wishlist','',{
+          timeOut:1000,
+        })
       }
     })
-    this.cancelSubscriptions.add(cancelSubscription);
+    this.cancleSubscriptions.add(cancleSubscription);
   }
-
   toggleIcon(productId:string): void {
     if(this.wishlistItems.includes(productId)){
       this.removeWishlistItem(productId);
@@ -93,19 +95,15 @@ export class ProductsComponent implements OnInit,OnDestroy{
       this.addProductToWishlist(productId);
     }
   }
-
   isProductInWishlist(productId: string): boolean {
     return this.wishlistItems.includes(productId);
   }
 
   ngOnInit(): void {
+    this.getLoggedUserWishlist();
     this.getProducts();
-    const storedWishlist = localStorage.getItem('wishlistItems');
-    if (storedWishlist) {
-      this.wishlistItems = JSON.parse(storedWishlist);
-    }
   }
   ngOnDestroy():void{
-    this.cancelSubscriptions.unsubscribe();
+    this.cancleSubscriptions.unsubscribe();
   }
 }

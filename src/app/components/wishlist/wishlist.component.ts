@@ -38,6 +38,7 @@ export class WishlistComponent {
   getLoggedUserWishlist(){
     const cancelSubscription=this._WishlistService.getLoggedUserWishlist().subscribe({
       next:(res)=>{
+        console.log(res);
         this.wishlist=res;
         this._WishlistService.wishlistCounter.next(res.count);
       }
