@@ -46,7 +46,6 @@ export class ForgotComponent implements OnInit,OnDestroy{
     let email=this.forgotPassword.get('email')?.value;
     const cancleSubscription=this._AuthService.forgotPassword(this.forgotPassword.value).subscribe({
       next:(res)=>{
-        console.log(res);
         this.steps=2;
         localStorage.setItem('currentStep',this.steps);
         localStorage.setItem('currentEmail',email);
@@ -63,7 +62,6 @@ export class ForgotComponent implements OnInit,OnDestroy{
    if(this.verifyResetCode.valid){
     const cancleSubscription=this._AuthService.verifyResetCode(this.verifyResetCode.value).subscribe({
       next:(res)=>{
-        console.log(res);
         this.steps=3;
       },
       error:(err:HttpErrorResponse)=>{
@@ -78,7 +76,6 @@ export class ForgotComponent implements OnInit,OnDestroy{
    if(this.resetPassword.valid){
     const cancleSubscription=this._AuthService.resetPassword(this.resetPassword.value).subscribe({
       next:(res)=>{
-        console.log(res);
         localStorage.setItem('token',res.token);
         this._AuthService.saveUserData();
         localStorage.removeItem('currentStep');

@@ -41,7 +41,6 @@ export class HomeComponent implements OnInit,OnDestroy{
       next:(res)=>
       {
         this.allProducts=res.data;
-        console.log(res.data);
       }
     })
     this.cancleSubscriptions.add(cancleSubscription);
@@ -49,7 +48,6 @@ export class HomeComponent implements OnInit,OnDestroy{
   addProductToCart(productId:string){
     const cancleSubscription=this._CartService.addProductToCart(productId).subscribe({
       next:(res)=>{
-        console.log(res);
         this._CartService.carCounter.next(res.numOfCartItems);
         this.toastr.success('Product added successfully','',{
           timeOut:1000,
@@ -61,7 +59,6 @@ export class HomeComponent implements OnInit,OnDestroy{
   addProductToWishlist(productId:string){
     const cancleSubscription=this._WishlistService.addProductToWishlist(productId).subscribe({
       next:(res)=>{
-        console.log(res.data.length);
         this.wishlistItems.push(productId);
         localStorage.setItem('wishlistItems', JSON.stringify(this.wishlistItems));
         this._WishlistService.wishlistCounter.next(res.data.length);
@@ -78,7 +75,6 @@ export class HomeComponent implements OnInit,OnDestroy{
         this.wishlistItems = this.wishlistItems.filter(id => id !== productId);
         localStorage.setItem('wishlistItems', JSON.stringify(this.wishlistItems));
         this._WishlistService.wishlistCounter.next(res.data.length);
-        console.log(res);
         this.toastr.success('Product removed successfully from your wishlist','',{
           timeOut:1000,
         })

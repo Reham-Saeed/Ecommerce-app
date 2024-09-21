@@ -4,7 +4,6 @@ import { catchError, throwError } from 'rxjs';
 export const catchErrorInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     catchError((err) => {
-      console.log(err);
       return throwError(() => err);
     })
   );

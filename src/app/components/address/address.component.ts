@@ -46,7 +46,6 @@ export class AddressComponent implements OnInit {
     const cancelSubscription = this._ActivatedRoute.paramMap.subscribe({
       next: (params) => {
         this.cartId = params.get('id')!;
-        console.log(params)
       },
     });
     this.cancelSubscriptions.add(cancelSubscription);

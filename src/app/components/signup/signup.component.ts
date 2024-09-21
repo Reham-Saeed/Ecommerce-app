@@ -40,11 +40,9 @@ export class SignupComponent implements OnDestroy{
    if(this.register.valid){
     this.cancleSubscription=this._AuthService.signup(this.register.value).subscribe({
       next:(res)=>{
-        console.log(res);
         this._Router.navigate(['/signin']);
       },
       error:(err:HttpErrorResponse)=>{
-        console.log(err?.error?.message);
         this.errorMessage=err?.error?.message;
       }
     })

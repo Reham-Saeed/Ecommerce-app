@@ -38,7 +38,6 @@ export class SigninComponent implements OnDestroy{
    if(this.login.valid){
     this.cancleSubscription=this._AuthService.signin(this.login.value).subscribe({
       next:(res)=>{
-        console.log(res);
         localStorage.setItem('token',res.token);
         this._AuthService.saveUserData();
         this._Router.navigate(['/home']);

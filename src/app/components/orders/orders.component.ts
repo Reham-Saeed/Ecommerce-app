@@ -22,7 +22,6 @@ export class OrdersComponent implements OnInit{
  getUserOrders(){
    this._OrderService.getUserOrders(this.userId).subscribe({
     next:(res)=>{
-      console.log(res);
       this.allOrders = res as Order[];
       this.order=this.allOrders[this.allOrders.length-1];
     }

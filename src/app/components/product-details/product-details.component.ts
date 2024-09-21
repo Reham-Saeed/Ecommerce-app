@@ -31,7 +31,7 @@ export class ProductDetailsComponent implements OnInit{
   addProductToCart(productId:string){
     const cancleSubscription=this._CartService.addProductToCart(productId).subscribe({
       next:(res)=>{
-        console.log(res);
+        this._CartService.carCounter.next(res.numOfCartItems);
         this.toastr.success('Product added successfully','',{
           timeOut:1000,
         })
@@ -43,7 +43,6 @@ export class ProductDetailsComponent implements OnInit{
   addProductToWishlist(productId:string){
     const cancleSubscription=this._WishlistService.addProductToWishlist(productId).subscribe({
       next:(res)=>{
-        console.log(res.data.length);
         this.wishlistItems.push(productId);
         localStorage.setItem('wishlistItems', JSON.stringify(this.wishlistItems));
         this._WishlistService.wishlistCounter.next(res.data.length);
@@ -62,7 +61,6 @@ export class ProductDetailsComponent implements OnInit{
         this.wishlistItems = this.wishlistItems.filter(id => id !== productId);
         localStorage.setItem('wishlistItems', JSON.stringify(this.wishlistItems));
         this._WishlistService.wishlistCounter.next(res.data.length);
-        console.log(res);
       }
     })
     this.cancleSubscriptions.add(cancleSubscription);

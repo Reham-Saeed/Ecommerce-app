@@ -46,7 +46,6 @@ export class AuthService {
       try {
         let decoded:any = jwtDecode(token);
         this.userId.next(decoded.id);
-        console.log(decoded.id);
       } catch (error) {
         this._Router.navigate(['signin']);
         localStorage.clear();

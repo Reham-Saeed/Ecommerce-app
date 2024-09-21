@@ -25,7 +25,6 @@ export class WishlistComponent {
   addProductToCart(productId:string){
     const cancelSubscription=this._CartService.addProductToCart(productId).subscribe({
       next:(res)=>{
-        console.log(res);
         this.removeWishlistItem(productId);
         this._CartService.carCounter.next(res.numOfCartItems);
         this.toastr.success('Product added successfully','',{
@@ -41,7 +40,6 @@ export class WishlistComponent {
       next:(res)=>{
         this.wishlist=res;
         this._WishlistService.wishlistCounter.next(res.count);
-        console.log(res);
       }
     })
     this.cancelSubscriptions.add(cancelSubscription);
@@ -53,8 +51,6 @@ export class WishlistComponent {
         localStorage.setItem('wishlistItems', JSON.stringify(this.wishlistItems));
         this.getLoggedUserWishlist();
         this._WishlistService.wishlistCounter.next(res.count);
-        
-        console.log(res);
       }
     });
     this.cancelSubscriptions.add(cancelSubscription);

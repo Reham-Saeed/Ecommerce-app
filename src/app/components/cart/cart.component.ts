@@ -24,7 +24,6 @@ export class CartComponent implements OnInit {
     const cancelSubscription=this._CartService.getLoggedUserCart().subscribe({
       next:(res)=>{
         this.cart=res;
-        console.log(res);
       }
     })
     this.cancelSubscriptions.add(cancelSubscription);
@@ -37,7 +36,6 @@ export class CartComponent implements OnInit {
         this.toastr.success('Product deleted successfully','',{
           timeOut:1000,
         })
-        console.log(res);
       }
     })
     this.cancelSubscriptions.add(cancelSubscription);
@@ -50,7 +48,6 @@ export class CartComponent implements OnInit {
         this.toastr.success('Product updated successfully','',{
           timeOut:1000,
         })
-        console.log(res);
       }
     })
     this.cancelSubscriptions.add(cancelSubscription);
@@ -63,7 +60,6 @@ export class CartComponent implements OnInit {
         this.toastr.success('Cart cleared successfully','',{
           timeOut:1000,
         })
-        console.log(res);
       }
     })
     this.cancelSubscriptions.add(cancelSubscription);

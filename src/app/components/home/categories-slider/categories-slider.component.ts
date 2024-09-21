@@ -21,7 +21,6 @@ export class CategoriesSliderComponent implements OnInit,OnDestroy {
     this.cancleSubscription=this._CategoriesService.getCategories().subscribe({
       next:(res)=>{
         this.allCategories=res.data;
-        console.log(res.data)
       }
     })
   }
