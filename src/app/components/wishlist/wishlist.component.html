@@ -1,6 +1,6 @@
-<section class="md:px-16">
+<section class="px-5 md:px-16">
   @if (wishlist?.count!=0) {
-  <div class="container bg-main-light rounded my-10 py-5">
+  <div class="container bg-main-light rounded my-10 p-5">
     <h1 class="text-xl font-bold">{{ "headers.myWishlist" | translate }}</h1>
     @for (wishItem of wishlist?.data; track $index) {
     <div class="md:flex my-2 gap-4 border-b py-4">
